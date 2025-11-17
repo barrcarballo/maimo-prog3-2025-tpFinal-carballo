@@ -25,10 +25,30 @@ function GalleryPage() {
               className="bg-slate-900 rounded-xl p-4 flex flex-col items-center gap-2"
             >
               <div className="relative w-[180px] h-[260px] bg-slate-800 rounded-lg overflow-hidden">
-                <Image src={getImage(char.legs)} alt="" fill className="object-contain" />
-                <Image src={getImage(char.body)} alt="" fill className="object-contain" />
-                <Image src={getImage(char.head)} alt="" fill className="object-contain" />
-                <Image src={getImage(char.hair)} alt="" fill className="object-contain" />
+                <Image
+                  src={getImage(char.hair)}
+                  alt=""
+                  fill
+                  className="object-contain"
+                />
+                <Image
+                  src={getImage(char.body)}
+                  alt=""
+                  fill
+                  className="object-contain"
+                />
+                <Image
+                  src={getImage(char.legs)}
+                  alt=""
+                  fill
+                  className="object-contain"
+                />
+                <Image
+                  src={getImage(char.head)}
+                  alt=""
+                  fill
+                  className="object-contain"
+                />
               </div>
               <p className="font-semibold">{char.name}</p>
             </div>

@@ -6,7 +6,7 @@ const AppContext = createContext();
 export const useApp = () => useContext(AppContext);
 
 export default function AppProvider({ children }) {
-  const API_URL = "http://localhost:4000/api";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL; // terminar de conectar con vercel 
 
   const [characters, setCharacters] = useState([]);
   const [parts, setParts] = useState([]);

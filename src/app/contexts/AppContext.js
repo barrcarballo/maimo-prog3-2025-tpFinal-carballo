@@ -12,12 +12,12 @@ export default function AppProvider({ children }) {
   const [parts, setParts] = useState([]);
 
   const getCharacters = useCallback(async () => {
-    const res = await axios.get(`${API_URL}/characters`);
+    const res = await axios.get(`${API_URL}/api/characters`);
     setCharacters(res.data);
   }, []);
 
   const getParts = useCallback(async () => {
-    const res = await axios.get(`${API_URL}/parts`);
+    const res = await axios.get(`${API_URL}/api/parts`);
     setParts(res.data);
   }, []);
 

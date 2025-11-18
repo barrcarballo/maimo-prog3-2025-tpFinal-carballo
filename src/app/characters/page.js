@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useApp } from "../contexts/AppContext";
 import CharacterPreview from "../../components/CharacterPreview";
+import Navbar from "@/components/Navbar";
 
 export default function CharactersPage() {
   const router = useRouter();
@@ -21,7 +22,7 @@ export default function CharactersPage() {
 
   const [name, setName] = useState("");
 
-  // 1) Agrupar las parts que vienen del backend por tipo
+  // Agrupa las parts que vienen del backend por tipo
   const groupedParts = useMemo(() => {
     const base = {
       hair: [],
@@ -33,9 +34,9 @@ export default function CharactersPage() {
     parts.forEach((p) => {
       if (base[p.type]) {
         base[p.type].push({
-          id: p.code,        // ej: "hair1"
-          src: p.file,   // ej: "/parts/hair1.png"
-          name: p.name,      // ej: "Hair 1"
+          id: p.code, 
+          src: p.file,
+          name: p.name,
         });
       }
     });
@@ -43,7 +44,7 @@ export default function CharactersPage() {
     return base;
   }, [parts]);
 
-  // 2) Obtener la parte seleccionada actual según los índices
+  // Obtener la parte seleccionada actual según los índices
   const selectedParts = {
     hair: groupedParts.hair[indexes.hair] || null,
     head: groupedParts.head[indexes.head] || null,
@@ -51,7 +52,7 @@ export default function CharactersPage() {
     legs: groupedParts.legs[indexes.legs] || null,
   };
 
-  // 3) Flecha siguiente
+  // Flecha siguiente
   const handleNext = (cat) => {
     const list = groupedParts[cat];
     if (!list || list.length === 0) return;
@@ -62,7 +63,7 @@ export default function CharactersPage() {
     }));
   };
 
-  // 4) Flecha anterior
+  // Flecha anterior
   const handlePrev = (cat) => {
     const list = groupedParts[cat];
     if (!list || list.length === 0) return;
@@ -73,7 +74,7 @@ export default function CharactersPage() {
     }));
   };
 
-  // 5) Guardar personaje (manda codes al backend)
+  // Guardar personaje (manda codes al backend)
   const handleSave = async () => {
     if (!selectedParts.hair || !selectedParts.head || !selectedParts.body || !selectedParts.legs) {
       alert("Faltan partes para armar el personaje.");
@@ -107,13 +108,13 @@ export default function CharactersPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#1a1a1a] text-white flex flex-col items-center p-10">
-      <h1 className="text-5xl mb-6 font-bold tracking-widest">Burton Maker</h1>
-
+    <main className="min-h-screen bg-radial-with-image text-white flex flex-col items-center">
+      <Navbar />
+      
       <div className="relative w-full max-w-6xl flex justify-center mt-4">
 
         {/* PANEL IZQUIERDO: texto + flecha izquierda */}
-        <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-center gap-10 pl-8">
+        <div className="absolute left-60 top-0 bottom-0 flex flex-col justify-center gap-10 pl-8">
           {categories.map((cat) => (
             <div key={cat} className="flex items-center gap-4">
               <p className="text-2xl w-20 capitalize">{cat}</p>
@@ -128,12 +129,12 @@ export default function CharactersPage() {
         </div>
 
         {/* CENTRO: preview del personaje */}
-        <div className="mx-auto bg-black/50 rounded-3xl p-6 shadow-2xl">
+        <div className="mx-auto bg-black rounded-3xl p-6 shadow-2xl">
           <CharacterPreview parts={selectedParts} />
         </div>
 
         {/* PANEL DERECHO: flecha derecha */}
-        <div className="absolute right-0 top-0 bottom-0 flex flex-col justify-center gap-10 pr-8">
+        <div className="absolute right-85 top-0 bottom-0 flex flex-col justify-center gap-10 pr-8">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -156,7 +157,7 @@ export default function CharactersPage() {
         />
         <button
           onClick={handleSave}
-          className="px-6 py-3 bg-purple-600 hover:bg-purple-500 rounded-xl text-lg transition"
+          className="p-3 mb-10 bg-purple-600 hover:bg-purple-500 rounded-xl text-lg transition"
         >
           Guardar personaje
         </button>

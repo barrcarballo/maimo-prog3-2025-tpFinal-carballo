@@ -18,9 +18,59 @@
     --foreground: #ededed;
   }
 }
+.bg-radial-with-image {
+  background-image:
+    url("/dummy/spiralTim.png"),
+    radial-gradient(circle, #C2C6CE 0%, #3E3E3E 80%, #1A1A1A 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-position: center, center;
+  position: relative;
+}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.bg-radial-with-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5); /* 50% */
+  pointer-events: none;
+} 
+
+/* Gradiente radial de la página */
+.bg-custom-radial {
+  background: radial-gradient(
+    circle,
+    #C2C6CE 0%,
+    #3E3E3E 80%,
+    #1A1A1A 100%
+  );
+}
+
+/* Contenedor centrado del espiral */
+.spiral-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140vmin;     /* cuadrado gigante para evitar recortes */
+  height: 140vmin;
+  transform: translate(-50%, -50%);
+  background-image: url("/dummy/spiralTim.png");
+  background-repeat: no-repeat;
+  background-size: contain; /* mantiene el espiral exacto */
+  background-position: center;
+  opacity: 0.5;
+  pointer-events: none;
+
+  animation: spin-slow 40s linear infinite;
+  transform-origin: center center;
+}
+
+/* Animación */
+@keyframes spin-slow {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1.8);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg) scale(1.8);
+  }
 }

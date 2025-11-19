@@ -6,7 +6,7 @@ import { useApp } from "../contexts/AppContext";
 import CharacterPreview from "../../components/CharacterPreview";
 import Navbar from "@/components/Navbar";
 
-export default function CharactersPage() {
+function CharactersPage() {
   const router = useRouter();
   const { addCharacter, parts } = useApp();
 
@@ -34,7 +34,7 @@ export default function CharactersPage() {
     parts.forEach((p) => {
       if (base[p.type]) {
         base[p.type].push({
-          id: p.code, 
+          id: p.code,
           src: p.file,
           name: p.name,
         });
@@ -76,7 +76,12 @@ export default function CharactersPage() {
 
   // Guardar personaje (manda codes al backend)
   const handleSave = async () => {
-    if (!selectedParts.hair || !selectedParts.head || !selectedParts.body || !selectedParts.legs) {
+    if (
+      !selectedParts.hair ||
+      !selectedParts.head ||
+      !selectedParts.body ||
+      !selectedParts.legs
+    ) {
       alert("Faltan partes para armar el personaje.");
       return;
     }
@@ -92,7 +97,7 @@ export default function CharactersPage() {
     router.push("/gallery");
   };
 
-  // Si todavía no cargaron las parts del backend
+  // Loading 
   const loading =
     !groupedParts.hair.length &&
     !groupedParts.head.length &&
@@ -110,14 +115,27 @@ export default function CharactersPage() {
   return (
     <main className="min-h-screen bg-radial-with-image text-white flex flex-col items-center">
       <Navbar />
-      
-      <div className="relative w-full max-w-6xl flex justify-center mt-4">
 
+      <h1
+        className="
+          text-3xl font-black tracking-[0.25em] uppercase mb-8 
+          drop-shadow-[4px_4px_0_rgba(0,0,0,0.8)] mt-4
+        "
+      >
+        Create Your Character
+      </h1>
+
+      <div className="relative w-full max-w-6xl flex justify-center mt-4">
         {/* PANEL IZQUIERDO: texto + flecha izquierda */}
         <div className="absolute left-60 top-0 bottom-0 flex flex-col justify-center gap-10 pl-8">
           {categories.map((cat) => (
             <div key={cat} className="flex items-center gap-4">
-              <p className="text-2xl w-20 capitalize">{cat}</p>
+              <p
+                className="text-xl capitalize font-black tracking-[0.25em]
+          drop-shadow-[4px_4px_0_rgba(0,0,0,0.8)"
+              >
+                {cat}
+              </p>
               <button
                 onClick={() => handlePrev(cat)}
                 className="w-10 h-10 bg-white/80 rounded-xl flex items-center justify-center text-black text-2xl hover:bg-white transition"
@@ -128,12 +146,12 @@ export default function CharactersPage() {
           ))}
         </div>
 
-        {/* CENTRO: preview del personaje */}
+        {/* preview del personaje*/}
         <div className="mx-auto bg-black rounded-3xl p-6 shadow-2xl">
           <CharacterPreview parts={selectedParts} />
         </div>
 
-        {/* PANEL DERECHO: flecha derecha */}
+        {/* flechas derechas */}
         <div className="absolute right-85 top-0 bottom-0 flex flex-col justify-center gap-10 pr-8">
           {categories.map((cat) => (
             <button
@@ -148,16 +166,37 @@ export default function CharactersPage() {
       </div>
 
       {/* nombre + guardar */}
-      <div className="mt-10 flex flex-col items-center gap-4">
+      <div className="mt-10 flex flex-col items-center gap-6">
         <input
           placeholder="Nombre del personaje"
-          className="px-4 py-2 bg-black border border-gray-600 rounded-xl text-white"
+          className="
+      px-5 py-3 w-72
+      bg-black/60 backdrop-blur-sm
+      border border-white/10
+      rounded-xl
+      text-white placeholder-gray-400
+      shadow-[0_0_20px_rgba(0,0,0,0.6)]
+      focus:outline-none focus:ring-2 focus:ring-purple-500/60
+      transition-all duration-200
+      tracking-wide
+    "
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+
         <button
           onClick={handleSave}
-          className="p-3 mb-10 bg-purple-600 hover:bg-purple-500 rounded-xl text-lg transition"
+          className="
+      px-8 py-3 mb-10
+      rounded-xl text-lg font-semibold
+      bg-purple-700/80
+      hover:bg-purple-600
+      text-white tracking-wide
+      shadow-[0_0_25px_rgba(147,51,234,0.45)]
+      hover:shadow-[0_0_35px_rgba(147,51,234,0.8)]
+      transition-all duration-200
+      hover:scale-[1.05]
+    "
         >
           Guardar personaje
         </button>
@@ -165,3 +204,5 @@ export default function CharactersPage() {
     </main>
   );
 }
+
+export default CharactersPage;

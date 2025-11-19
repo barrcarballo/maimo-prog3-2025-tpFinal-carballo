@@ -6,13 +6,10 @@ export default function CharacterCard({ parts, className = "" }) {
   return (
     <div
       className={`
-        relative w-[200px] h-[300px]
-        bg-slate-900/70 rounded-xl overflow-hidden
-        backdrop-blur-sm shadow-xl border border-white/10
+        relative w-[250px] h-[350px] rounded-xl overflow-hidden
         ${className}
       `}
     >
-
       {parts.hair?.src && (
         <Image
           src={parts.hair.src}
@@ -21,7 +18,7 @@ export default function CharacterCard({ parts, className = "" }) {
           className="object-contain"
         />
       )}
-        
+
       {parts.body?.src && (
         <Image
           src={parts.body.src}

@@ -1,50 +1,49 @@
-'use client'
-import React from 'react';
+"use client";
+import React from "react";
 import { useRouter } from "next/navigation";
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const HomeContainer = () => {
   const router = useRouter();
-    
+
   return (
     <div className="min-h-screen bg-custom-radial text-white relative overflow-hidden">
-      {/* Navbar arriba */}
       <Navbar />
 
-      {/* Capa animada con la espiral */}
       <div className="spiral-layer" />
 
       <main className="min-h-[calc(100vh-80px)] flex flex-col items-center justify-center gap-6 relative z-10 text-center">
-
-  {/* Título estilo Burton */}
-  <h1 className="
+        <h1
+          className="
     text-5xl 
     font-black 
     text-white 
     drop-shadow-[4px_4px_0px_rgba(0,0,0,0.8)]
     tracking-widest
     rotate-[-2deg]
-  ">
-    Welcome dear fan...
-  </h1>
+  "
+        >
+          Welcome dear fan...
+        </h1>
 
-  {/* Subtítulo gótico */}
-  <p className="
+        {/* Subtítulo gótico */}
+        <p
+          className="
     text-xl 
-    text-gray-300 
+    text-white 
     max-w-md
     leading-relaxed 
     italic
     drop-shadow-[2px_2px_0px_rgba(0,0,0,0.6)]
-  ">
-    Create your own gothic character and bring your dark style to life.
-  </p>
+  "
+        >
+          Create your own gothic character and bring your dark style to life.
+        </p>
 
-  {/* Botón animado */}
-  <button
-    onClick={() => router.push("/characters")}
-    className="
+        <button
+          onClick={() => router.push("/characters")}
+          className="
       px-8 py-3 
       rounded-xl 
       bg-purple-700/80 
@@ -60,15 +59,13 @@ const HomeContainer = () => {
       backdrop-blur-sm
       hover:scale-105
     "
-  >
-    Start Creating
-  </button>
-
-</main>
-< Footer />
-
+        >
+          Start Creating
+        </button>
+      </main>
+      <Footer />
     </div>
   );
-}
+};
 
 export default HomeContainer;

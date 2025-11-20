@@ -26,8 +26,6 @@ const HomeContainer = () => {
         >
           Welcome dear fan...
         </h1>
-
-        {/* Subtítulo gótico */}
         <p
           className="
     text-xl 

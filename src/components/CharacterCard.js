@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-export default function CharacterCard({ parts, className = "" }) {
+function CharacterCard({ parts, className = "" }) {
   return (
     <div
       className={`
@@ -48,3 +48,5 @@ export default function CharacterCard({ parts, className = "" }) {
     </div>
   );
 }
+
+export default CharacterCard;

@@ -9,7 +9,6 @@ const Navbar = () => {
       {/* Capa de degradado */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-linear-to-b from-black to-transparent" />
 
-      {/* Contenido encima */}
       <div className="z-10 m-6">
         <Image
           src="/dummy/logo.png"
